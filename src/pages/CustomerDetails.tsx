@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
+import { Users } from "lucide-react";
 
 const CustomerDetails = () => {
   const navigate = useNavigate();
@@ -34,6 +35,13 @@ const CustomerDetails = () => {
             className="w-full bg-[#FC46AA] hover:bg-pink-400 text-white"
           >
             Address Details
+          </Button>
+          <Button 
+            onClick={() => navigate("/customers-list")}
+            className="w-full bg-[#FC46AA] hover:bg-pink-400 text-white flex items-center justify-center gap-2"
+          >
+            <Users className="h-5 w-5" />
+            View All Customers
           </Button>
         </div>
         <Button 

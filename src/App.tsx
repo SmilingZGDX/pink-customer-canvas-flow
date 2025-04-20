@@ -10,6 +10,7 @@ import CustomerName from "./pages/CustomerName";
 import CustomerIdentity from "./pages/CustomerIdentity";
 import CustomerContact from "./pages/CustomerContact";
 import CustomerAddress from "./pages/CustomerAddress";
+import CustomersList from "./pages/CustomersList";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/customer-identity" element={<CustomerIdentity />} />
           <Route path="/customer-contact" element={<CustomerContact />} />
           <Route path="/customer-address" element={<CustomerAddress />} />
+          <Route path="/customers-list" element={<CustomersList />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
