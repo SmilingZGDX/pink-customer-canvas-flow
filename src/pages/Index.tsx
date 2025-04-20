@@ -1,12 +1,27 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-pink-50">
+      <Card className="w-full max-w-2xl p-8 space-y-6 shadow-lg">
+        <h1 className="text-4xl font-bold text-[#F699CD] text-center">Welcome to Customer Onboarding</h1>
+        <p className="text-[#F699CD] text-center text-lg">
+          Let's get started with your registration process
+        </p>
+        <div className="flex justify-center">
+          <Button 
+            onClick={() => navigate("/customer-details")}
+            className="bg-[#F699CD] hover:bg-pink-400 text-white px-8 py-4 text-lg"
+          >
+            Start Registration
+          </Button>
+        </div>
+      </Card>
     </div>
   );
 };
