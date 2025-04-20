@@ -9,14 +9,14 @@ const Index = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-pink-50">
       <Card className="w-full max-w-2xl p-8 space-y-6 shadow-lg">
-        <h1 className="text-4xl font-bold text-[#F699CD] text-center">Welcome to Customer Onboarding</h1>
-        <p className="text-[#F699CD] text-center text-lg">
+        <h1 className="text-4xl font-bold text-[#FC46AA] text-center">Welcome to Customer Onboarding</h1>
+        <p className="text-[#FC46AA] text-center text-lg">
           Let's get started with your registration process
         </p>
         <div className="flex justify-center">
           <Button 
             onClick={() => navigate("/customer-details")}
-            className="bg-[#F699CD] hover:bg-pink-400 text-white px-8 py-4 text-lg"
+            className="bg-[#FC46AA] hover:bg-pink-400 text-white px-8 py-4 text-lg"
           >
             Start Registration
           </Button>

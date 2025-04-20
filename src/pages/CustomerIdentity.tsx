@@ -12,10 +12,10 @@ const CustomerIdentity = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-pink-50 p-4">
       <Card className="w-full max-w-2xl p-8 space-y-6">
-        <h2 className="text-3xl font-semibold text-[#F699CD] text-center">Proof of Identity</h2>
+        <h2 className="text-3xl font-semibold text-[#FC46AA] text-center">Proof of Identity</h2>
         <div className="space-y-4">
           <div className="space-y-2">
-            <Label className="text-[#F699CD]">ID Type</Label>
+            <Label className="text-[#FC46AA]">ID Type</Label>
             <Select>
               <SelectTrigger>
                 <SelectValue placeholder="Select ID type" />
@@ -28,11 +28,11 @@ const CustomerIdentity = () => {
             </Select>
           </div>
           <div className="space-y-2">
-            <Label className="text-[#F699CD]">ID Number</Label>
+            <Label className="text-[#FC46AA]">ID Number</Label>
             <Input type="text" placeholder="Enter your ID number" />
           </div>
           <div className="space-y-2">
-            <Label className="text-[#F699CD]">Expiry Date</Label>
+            <Label className="text-[#FC46AA]">Expiry Date</Label>
             <Input type="date" />
           </div>
         </div>
@@ -40,13 +40,13 @@ const CustomerIdentity = () => {
           <Button 
             onClick={() => navigate("/customer-name")}
             variant="outline"
-            className="w-full border-[#F699CD] text-[#F699CD] hover:bg-pink-50"
+            className="w-full border-[#FC46AA] text-[#FC46AA] hover:bg-pink-50"
           >
             Back
           </Button>
           <Button 
             onClick={() => navigate("/customer-contact")}
-            className="w-full bg-[#F699CD] hover:bg-pink-400 text-white"
+            className="w-full bg-[#FC46AA] hover:bg-pink-400 text-white"
           >
             Next
           </Button>
