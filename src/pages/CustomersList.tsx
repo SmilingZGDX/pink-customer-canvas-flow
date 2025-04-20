@@ -3,16 +3,12 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { Users } from "lucide-react";
+import { Users, FileSearch } from "lucide-react";
+import { useCustomers } from "@/context/CustomerContext";
 
 const CustomersList = () => {
   const navigate = useNavigate();
-  
-  // This is just mock data - real data would come from your backend
-  const customers = [
-    { id: 1, firstName: "John", lastName: "Doe", email: "john@example.com", phone: "+1234567890" },
-    { id: 2, firstName: "Jane", lastName: "Smith", email: "jane@example.com", phone: "+0987654321" },
-  ];
+  const { customers } = useCustomers();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-pink-50 p-6">
@@ -31,28 +27,42 @@ const CustomersList = () => {
           </Button>
         </div>
         
-        <div className="rounded-md border">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>First Name</TableHead>
-                <TableHead>Last Name</TableHead>
-                <TableHead>Email</TableHead>
-                <TableHead>Phone</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {customers.map((customer) => (
-                <TableRow key={customer.id}>
-                  <TableCell>{customer.firstName}</TableCell>
-                  <TableCell>{customer.lastName}</TableCell>
-                  <TableCell>{customer.email}</TableCell>
-                  <TableCell>{customer.phone}</TableCell>
+        {customers.length === 0 ? (
+          <div className="text-center py-10">
+            <FileSearch className="h-12 w-12 text-[#FC46AA] mx-auto mb-4" />
+            <h3 className="text-xl font-medium mb-2">No customers found</h3>
+            <p className="text-gray-500 mb-4">Start adding customers to see them listed here.</p>
+            <Button
+              onClick={() => navigate("/customer-name")}
+              className="bg-[#FC46AA] hover:bg-pink-400 text-white"
+            >
+              Add New Customer
+            </Button>
+          </div>
+        ) : (
+          <div className="rounded-md border">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>First Name</TableHead>
+                  <TableHead>Last Name</TableHead>
+                  <TableHead>Email</TableHead>
+                  <TableHead>Phone</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
+              </TableHeader>
+              <TableBody>
+                {customers.map((customer) => (
+                  <TableRow key={customer.id}>
+                    <TableCell>{customer.firstName}</TableCell>
+                    <TableCell>{customer.lastName}</TableCell>
+                    <TableCell>{customer.email}</TableCell>
+                    <TableCell>{customer.phone}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        )}
       </Card>
     </div>
   );

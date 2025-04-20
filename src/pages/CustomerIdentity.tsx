@@ -1,13 +1,42 @@
 
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useNavigate } from "react-router-dom";
+import { toast } from "@/hooks/use-toast";
 
 const CustomerIdentity = () => {
   const navigate = useNavigate();
+  const [idType, setIdType] = useState("");
+  const [idNumber, setIdNumber] = useState("");
+  const [expiryDate, setExpiryDate] = useState("");
+
+  useEffect(() => {
+    const savedData = sessionStorage.getItem('customerIdentity');
+    if (savedData) {
+      const { idType: it, idNumber: in_, expiryDate: ed } = JSON.parse(savedData);
+      setIdType(it || "");
+      setIdNumber(in_ || "");
+      setExpiryDate(ed || "");
+    }
+  }, []);
+
+  const handleNext = () => {
+    if (!idType || !idNumber) {
+      toast({
+        title: "Required fields missing",
+        description: "Please select an ID type and enter your ID number.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    sessionStorage.setItem('customerIdentity', JSON.stringify({ idType, idNumber, expiryDate }));
+    navigate("/customer-contact");
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-pink-50 p-4">
@@ -16,7 +45,7 @@ const CustomerIdentity = () => {
         <div className="space-y-4">
           <div className="space-y-2">
             <Label className="text-[#FC46AA]">ID Type</Label>
-            <Select>
+            <Select value={idType} onValueChange={setIdType}>
               <SelectTrigger>
                 <SelectValue placeholder="Select ID type" />
               </SelectTrigger>
@@ -29,11 +58,20 @@ const CustomerIdentity = () => {
           </div>
           <div className="space-y-2">
             <Label className="text-[#FC46AA]">ID Number</Label>
-            <Input type="text" placeholder="Enter your ID number" />
+            <Input 
+              type="text" 
+              placeholder="Enter your ID number" 
+              value={idNumber}
+              onChange={(e) => setIdNumber(e.target.value)}
+            />
           </div>
           <div className="space-y-2">
             <Label className="text-[#FC46AA]">Expiry Date</Label>
-            <Input type="date" />
+            <Input 
+              type="date" 
+              value={expiryDate}
+              onChange={(e) => setExpiryDate(e.target.value)}
+            />
           </div>
         </div>
         <div className="flex space-x-4">
@@ -45,7 +83,7 @@ const CustomerIdentity = () => {
             Back
           </Button>
           <Button 
-            onClick={() => navigate("/customer-contact")}
+            onClick={handleNext}
             className="w-full bg-[#FC46AA] hover:bg-pink-400 text-white"
           >
             Next
